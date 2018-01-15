@@ -1,7 +1,7 @@
 from rest_framework import generics, mixins
 from postings.models import BlogPost
 from .serializers import BlogPostSerializer
-from .permissions import IsOwnerOrReadOnly
+from shared_permissions.permissions import IsOwnerOrReadOnly
 
 class BlogPostAPIView(mixins.CreateModelMixin, generics.ListAPIView):
 	lookup_field = 'pk'
