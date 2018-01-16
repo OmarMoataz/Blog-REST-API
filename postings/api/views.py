@@ -1,4 +1,5 @@
 from rest_framework import generics, mixins
+from django.http import HttpResponse
 from postings.models import BlogPost
 from .serializers import BlogPostSerializer
 from shared_permissions.permissions import IsOwnerOrReadOnly
@@ -15,7 +16,7 @@ class BlogPostAPIView(mixins.CreateModelMixin, generics.ListAPIView):
 		serializer.save(user=self.request.user)
 
 	def post(self, request, *args, **kwargs):
-		self.create(request, *args, **kwargs)	
+		self.create(request, *args, **kwargs)
 
 
 class BlogPostRUDView(generics.RetrieveUpdateDestroyAPIView):
