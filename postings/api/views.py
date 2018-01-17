@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from postings.models import BlogPost
 from .serializers import BlogPostSerializer
 from shared_permissions.permissions import IsOwnerOrReadOnly
+from rest_framework.response import Response
 
 class BlogPostAPIView(mixins.CreateModelMixin, generics.ListAPIView):
 	lookup_field = 'pk'
@@ -17,6 +18,8 @@ class BlogPostAPIView(mixins.CreateModelMixin, generics.ListAPIView):
 
 	def post(self, request, *args, **kwargs):
 		self.create(request, *args, **kwargs)
+		return Response(template_name='rest_framework/api.html')
+
 
 
 class BlogPostRUDView(generics.RetrieveUpdateDestroyAPIView):
